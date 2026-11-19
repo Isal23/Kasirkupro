@@ -1148,24 +1148,60 @@ label {
 
 .variant-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr auto;
+  grid-template-columns: 1fr 1fr;
   gap: 8px;
-  align-items: center;
-  margin: 6px 0;
+  align-items: end;
+  margin: 4px 0 8px;
 }
 
-.variant-row input {
-  margin: 2px 0;
-  padding: 9px 10px;
+.variant-field {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
 }
 
-.variant-row button {
+.variant-field label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #475569;
+  margin-bottom: 3px;
+}
+
+.variant-row input,
+.variant-row select {
+  margin: 0 !important;
+  padding: 9px 10px;
+  min-width: 0;
+  width: 100%;
+}
+
+.variant-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.variant-card-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.variant-del-btn {
+  background: #fee2e2;
+  color: #dc2626;
+  border-radius: 7px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.variant-del-btn:hover {
   background: var(--danger);
   color: #fff;
-  border-radius: 8px;
-  padding: 9px 12px;
-  font-weight: 700;
 }
 
 .unit-note {
@@ -2013,29 +2049,220 @@ tbody tr:hover {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(4px);
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   z-index: 1000;
   overflow-y: auto;
-  padding: 16px;
+  padding: 14px;
+  padding-bottom: calc(20px + env(safe-area-inset-bottom));
 }
 
 .detail-content {
-  background: #fff;
-  border-radius: var(--radius-lg);
-  padding: 22px;
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 20px 18px;
   max-width: 680px;
-  margin: 24px auto;
-  box-shadow: var(--shadow-lg);
+  margin: 16px auto;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 24px 54px -12px rgba(15, 23, 42, 0.28);
   animation: fadeSlideIn 0.2s ease-out;
 }
 
-.detail-content h3 { margin-bottom: 14px; }
+.detail-content h3 {
+  margin-bottom: 0;
+  font-size: 17px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.015em;
+}
+
 .detail-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  gap: 10px;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.detail-close-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 15px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+.detail-close-btn:hover {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.detail-meta-card {
+  background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
+  border: 1px solid #dbeafe;
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.detail-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+
+.detail-meta-label {
+  color: #64748b;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.detail-meta-val {
+  color: #0f172a;
+  font-weight: 700;
+  text-align: right;
+  word-break: break-word;
+}
+
+.detail-section-label {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #475569;
+  margin: 4px 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.detail-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.detail-item-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 13px;
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+}
+
+.detail-item-main {
+  min-width: 0;
+  flex: 1;
+}
+
+.detail-item-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #0f172a;
+  overflow-wrap: anywhere;
+}
+
+.detail-item-sub {
+  font-size: 11.5px;
+  color: #64748b;
+  margin-top: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.detail-item-subtotal {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #1d4ed8;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.detail-summary-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 15px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+}
+
+.detail-summary-box .total {
+  padding: 5px 0;
+  font-size: 13px;
+  color: #475569;
+}
+
+.detail-summary-box .total b {
+  color: #0f172a;
+  font-variant-numeric: tabular-nums;
+}
+
+.detail-summary-box .total.final {
+  border-top: 1.5px dashed #cbd5e1;
+  padding-top: 10px;
+  margin-top: 6px;
+  font-size: 16px;
+  color: #0f172a;
+}
+
+.detail-summary-box .total.final b {
+  color: #1d4ed8;
+  font-size: 18px;
+}
+
+.detail-action-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.detail-action-btn {
+  padding: 11px 12px;
+  border-radius: 12px;
+  font-size: 12.5px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+  line-height: 1.25;
+  color: #ffffff;
+}
+
+@media (max-width: 420px) {
+  .detail-content {
+    padding: 16px 14px;
+    border-radius: 18px;
+  }
+  .detail-action-grid {
+    gap: 7px;
+  }
+  .detail-action-btn {
+    padding: 10px 8px;
+    font-size: 11.5px;
+  }
 }
 
 .cart-line-profit {
@@ -2593,6 +2820,284 @@ tbody tr:hover {
   background: #0f172a;
   min-height: 240px;
 }
+
+/* Modal Ubah Harga Modal (Sesuai Desain Gambar Referensi) */
+.uhm-modal-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 22px 20px 20px;
+  max-width: 440px;
+  margin: 18px auto;
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.28);
+  animation: fadeSlideIn 0.2s ease-out;
+}
+.uhm-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.uhm-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+.uhm-close-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  font-size: 15px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.uhm-close-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+.uhm-meta-box {
+  background: #f4f7fb;
+  border: 1px solid #dbeafe;
+  border-radius: 14px;
+  padding: 13px 15px;
+  margin-bottom: 14px;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: #1e293b;
+}
+.uhm-meta-box b {
+  font-weight: 700;
+  color: #0f172a;
+}
+.uhm-desc {
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.48;
+  margin-bottom: 14px;
+}
+.uhm-items-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.uhm-item-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 14px 15px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+}
+.uhm-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.uhm-item-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #1d4ed8;
+  line-height: 1.35;
+}
+.uhm-item-qty {
+  font-size: 11.5px;
+  color: #64748b;
+  margin-top: 2px;
+}
+.uhm-item-subtotal {
+  font-size: 14px;
+  font-weight: 800;
+  color: #0f172a;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.uhm-input-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 6px;
+}
+.uhm-price-input {
+  width: 100%;
+  margin: 0 !important;
+  padding: 11px 14px !important;
+  background: #f1f5f9 !important;
+  border: 1.5px solid #cbd5e1 !important;
+  border-radius: 12px !important;
+  font-size: 15px !important;
+  font-weight: 700;
+  color: #0f172a !important;
+  font-variant-numeric: tabular-nums;
+}
+.uhm-price-input:focus {
+  background: #ffffff !important;
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14) !important;
+}
+.uhm-total-bar {
+  border-top: 1px dashed #cbd5e1;
+  padding-top: 14px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.uhm-total-bar span {
+  font-size: 15px;
+  font-weight: 800;
+  color: #1d4ed8;
+}
+.uhm-total-bar strong {
+  font-size: 17px;
+  font-weight: 800;
+  color: #1d4ed8;
+  font-variant-numeric: tabular-nums;
+}
+.uhm-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.uhm-btn-save {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: 12px;
+  background: #10b981;
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.28);
+}
+.uhm-btn-save:hover {
+  background: #059669;
+}
+.uhm-btn-back {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #1e293b;
+  font-size: 13.5px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.uhm-btn-back:hover {
+  background: #e2e8f0;
+}
+
+/* Edit Transaksi & Staging Tambah Barang dari Detail */
+.edit-staging-banner {
+  position: sticky;
+  top: var(--fixed-header-height, 92px);
+  z-index: 946;
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border: 1.5px solid #f59e0b;
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.22);
+}
+.edit-staging-banner-info {
+  flex: 1;
+  min-width: 200px;
+}
+.edit-staging-banner-info strong {
+  display: block;
+  font-size: 13.5px;
+  color: #92400e;
+}
+.edit-staging-banner-info small {
+  display: block;
+  font-size: 11.5px;
+  color: #b45309;
+  margin-top: 2px;
+}
+.edit-staging-banner-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.trx-edit-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #f8fafc;
+  margin-bottom: 8px;
+}
+.trx-edit-item-info {
+  flex: 1;
+  min-width: 0;
+}
+.trx-edit-item-info b {
+  display: block;
+  font-size: 13.5px;
+  color: var(--text);
+}
+.trx-edit-item-info small {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+.trx-edit-qty-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 3px;
+  border-radius: 9px;
+}
+.trx-edit-qty-box button {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  font-weight: 800;
+  font-size: 16px;
+  background: var(--primary);
+  color: #fff;
+}
+.trx-edit-qty-box button.minus {
+  background: #f1f5f9;
+  color: var(--text);
+  border: 1px solid #cbd5e1;
+}
+.trx-edit-qty-box span {
+  min-width: 24px;
+  text-align: center;
+  font-weight: 800;
+  font-size: 14px;
+}
+
 </style>
 </head>
 <body>
@@ -2806,6 +3311,16 @@ tbody tr:hover {
 </section>
 
 <section id="kasir" class="page">
+<div id="kasirEditStagingBanner" class="edit-staging-banner" style="display:none">
+  <div class="edit-staging-banner-info">
+    <strong id="kasirEditStagingTitle">✏️ Mode Tambah Barang ke Transaksi</strong>
+    <small id="kasirEditStagingSub">Pilih barang &amp; masukkan ke keranjang sementara, lalu klik Gabung ke Transaksi.</small>
+  </div>
+  <div class="edit-staging-banner-actions">
+    <button type="button" class="btn green" style="padding:8px 12px;font-size:12px" onclick="mergeStagedCartToEditedTransaction('kasir')">✓ Gabung ke Transaksi</button>
+    <button type="button" class="btn gray" style="padding:8px 11px;font-size:12px" onclick="cancelEditTransactionStaging('kasir')">Batal</button>
+  </div>
+</div>
 <div class="panel">
 <div class="section-title"><h3>🔍 Pilih Produk</h3><button class="btn green" id="kasirQuickAddBtn" onclick="openQuickAddFromKasir()">+ Tambah Produk Baru</button></div>
 <div class="sticky-search-bar"><input id="search" placeholder="Cari nama atau scan barcode..." oninput="handleSearchInput('search', renderProducts)"><button type="button" class="search-clear-btn" onclick="clearSearchInput('search', renderProducts)" aria-label="Hapus pencarian">✕</button><button type="button" class="scan-btn" onclick="openBarcodeScanner('kasir')" title="Scan Barcode Kamera" aria-label="Scan Barcode">📷</button></div>
@@ -2867,7 +3382,7 @@ tbody tr:hover {
 
 <section id="produk" class="page">
 <div class="panel" id="productInputPanel">
-<h3 id="productFormHeading">📦 Input Barang Baru</h3>
+<div class="section-title"><h3 id="productFormHeading">📦 Input Barang Baru</h3><button type="button" class="btn red" id="deleteEditingProductBtn" style="display:none;padding:8px 12px;font-size:12.5px" onclick="deleteEditingProduct()">🗑️ Hapus Produk</button></div>
 <p class="muted">Isi nama barang saja untuk menambahkan produk. Kolom lainnya boleh dikosongkan.</p>
 <input type="hidden" id="pid">
 <label>Nama Barang *</label><input id="pname" placeholder="Nama barang">
@@ -2885,25 +3400,22 @@ tbody tr:hover {
 </div>
 
 <div class="row">
-<div><label>Harga Modal (Opsional)</label><input id="pcost" class="money-input" type="text" inputmode="decimal" placeholder="Boleh kosong" oninput="calculateProductProfit()"></div>
-<div><label>Harga Jual (Opsional)</label><input id="pprice" class="money-input" type="text" inputmode="decimal" placeholder="Boleh kosong" oninput="calculateProductProfit();syncBaseVariantPrice()"></div>
+<div><label>Harga Modal Satuan (<span id="costBaseUnitLabel">PCS</span>)</label><input id="pcost" class="money-input" type="text" inputmode="decimal" placeholder="Boleh kosong / otomatis dari varian" oninput="onBaseCostInput()"></div>
+<div><label>Harga Jual Satuan (<span id="priceBaseUnitLabel">PCS</span>)</label><input id="pprice" class="money-input" type="text" inputmode="decimal" placeholder="Boleh kosong" oninput="calculateProductProfit();syncBaseVariantPrice()"></div>
 </div>
 
 <label>Satuan Dasar Stok (Opsional)</label>
 <div class="input-with-action">
   <select id="pbaseUnit" onchange="syncBaseVariantPrice()"></select>
-  <button type="button" class="btn action-mini-btn" onclick="promptAddUnit('pbaseUnit')" title="Tambah Satuan">+ Satuan</button>
   <button type="button" class="btn red action-mini-btn" onclick="promptDeleteUnit('pbaseUnit')" title="Hapus Satuan">🗑️</button>
 </div>
 
 <div class="variant-section-box">
   <label>Varian Satuan Tambahan (Opsional)</label>
-  <div class="unit-note">Contoh: 1 PAK = 5 PCS (isi faktor 5).</div>
+  <div class="unit-note">Contoh: 1 PAK = 5 PCS (isi faktor 5). Jika <b>Harga Modal Varian</b> diisi, <b>Harga Modal Satuan</b> otomatis dihitung (Modal Varian ÷ Isi/Faktor).</div>
   <div id="variantRows"></div>
   <div style="margin-top:6px;display:flex;gap:8px;flex-wrap:wrap">
     <button type="button" class="btn" onclick="addVariantRow()">+ Tambah Varian</button>
-    <button type="button" class="btn gray" onclick="promptAddUnit()">+ Satuan Baru</button>
-    <button type="button" class="btn red" onclick="promptDeleteUnit()">🗑️ Hapus Satuan</button>
   </div>
 </div>
 
@@ -2942,13 +3454,23 @@ tbody tr:hover {
 </section>
 
 <section id="belanja" class="page">
+<div id="belanjaEditStagingBanner" class="edit-staging-banner" style="display:none">
+  <div class="edit-staging-banner-info">
+    <strong id="belanjaEditStagingTitle">✏️ Mode Tambah Barang ke Belanja Agen</strong>
+    <small id="belanjaEditStagingSub">Pilih barang &amp; masukkan ke keranjang sementara, lalu klik Gabung ke Transaksi.</small>
+  </div>
+  <div class="edit-staging-banner-actions">
+    <button type="button" class="btn green" style="padding:8px 12px;font-size:12px" onclick="mergeStagedCartToEditedTransaction('belanja')">✓ Gabung ke Transaksi</button>
+    <button type="button" class="btn gray" style="padding:8px 11px;font-size:12px" onclick="cancelEditTransactionStaging('belanja')">Batal</button>
+  </div>
+</div>
 <div class="panel">
-<h3>🛍️ Belanja ke Agen / Supplier</h3>
+<div class="section-title"><h3>🛍️ Belanja ke Agen / Supplier</h3><button type="button" class="btn green" id="belanjaQuickAddBtn" onclick="openQuickAddFromBelanja()">+ Tambah Produk Baru</button></div>
 <label>Nama Agen / Supplier</label>
 <input id="supplierName" placeholder="Nama agen atau supplier">
 <h3 style="margin-top:12px">🔍 Pilih Produk</h3>
 <div class="sticky-search-bar"><input id="purchaseSearch" placeholder="Cari nama atau scan barcode..." oninput="handleSearchInput('purchaseSearch', renderPurchaseUI)"><button type="button" class="search-clear-btn" onclick="clearSearchInput('purchaseSearch', renderPurchaseUI)" aria-label="Hapus pencarian">✕</button><button type="button" class="scan-btn" onclick="openBarcodeScanner('belanja')" title="Scan Barcode Kamera" aria-label="Scan Barcode">📷</button></div>
-<p class="muted" style="margin-bottom:10px">Pilih satuan jika produk memiliki varian, lalu tekan + untuk memasukkan ke keranjang.</p>
+<p class="muted" id="belanjaHintText" style="margin-bottom:10px">Pilih satuan jika produk memiliki varian, lalu tekan + untuk memasukkan ke keranjang. Tekan lama produk untuk mengedit.</p>
 <div class="products" id="purchaseProductList"></div>
 </div>
 <div class="panel" id="purchaseCartPanel">
@@ -3337,6 +3859,8 @@ return;
 if(modalHistoryOpen||$('detailModal').style.display==='block'){
 modalHistoryOpen=false;
 $('detailModal').style.display='none';
+if($('detailContent'))$('detailContent').className='detail-content';
+activePurchaseEditState=null;
 if(event.state&&event.state.kasirKu){
 currentHistoryIndex=event.state.index??currentHistoryIndex;
 currentPage=event.state.page||currentPage;
@@ -3750,9 +4274,13 @@ function applyAuthSession(){
   const canEditProd=canEditProducts();
   if($('dashAddProductBtn'))$('dashAddProductBtn').style.display=canEditProd?'inline-block':'none';
   if($('kasirQuickAddBtn'))$('kasirQuickAddBtn').style.display=canEditProd?'inline-block':'none';
+  if($('belanjaQuickAddBtn'))$('belanjaQuickAddBtn').style.display=canEditProd?'inline-block':'none';
   if($('kasirHintText'))$('kasirHintText').textContent=canEditProd
     ?'Pilih satuan produk jika tersedia, lalu tekan + untuk memasukkan ke keranjang. Tekan lama produk untuk mengedit.'
     :'Pilih satuan produk jika tersedia, lalu tekan + untuk memasukkan ke keranjang.';
+  if($('belanjaHintText'))$('belanjaHintText').textContent=canEditProd
+    ?'Pilih satuan jika produk memiliki varian, lalu tekan + untuk memasukkan ke keranjang. Tekan lama produk untuk mengedit.'
+    :'Pilih satuan jika produk memiliki varian, lalu tekan + untuk memasukkan ke keranjang.';
 
   // Sembunyikan/tampilkan tab Input Barang di halaman Produk
   const produkTabs=$('produk')?.querySelector('.split-tabs');
@@ -3897,11 +4425,25 @@ function normalizeProducts(arr){
   if(!Array.isArray(arr))return [];
   return arr.filter(Boolean).map(p=>{
     const baseUnit=p.baseUnit||'PCS';
+    const baseCost=Number(p.cost)||0;
     const variants=Array.isArray(p.variants)&&p.variants.length
-      ? p.variants
-      : [{name:baseUnit,factor:1,price:Number(p.price)||0}];
-    return {...p,baseUnit,variants};
+      ? p.variants.map(v=>{
+          const f=Math.max(1,Number(v.factor)||1);
+          const vCost=(v.cost!==undefined&&v.cost!==null&&Number(v.cost)>0)
+            ? Number(v.cost)
+            : (baseCost*f);
+          return {...v,factor:f,price:Number(v.price)||0,cost:vCost};
+        })
+      : [{name:baseUnit,factor:1,price:Number(p.price)||0,cost:baseCost}];
+    return {...p,baseUnit,cost:baseCost,variants};
   });
+}
+function getVariantUnitCost(product,variant,factor=1){
+  const f=Math.max(1,Number(variant?.factor||factor)||1);
+  if(f===1)return Number(product?.cost)||0;
+  const explicitCost=Number(variant?.cost);
+  if(Number.isFinite(explicitCost)&&explicitCost>0)return explicitCost;
+  return (Number(product?.cost)||0)*f;
 }
 products=normalizeProducts(products);
 let transactions=loadData('kp_transactions',[]);
@@ -4720,6 +5262,7 @@ setTimeout(()=>$('purchaseCartPanel').scrollIntoView({behavior:'smooth',block:'s
 function goProduk(tab='input'){
   if(tab==='input'&&!canEditProducts())return alert('Akses tambah/edit produk dibatasi untuk Kasir.');
   window.returnToKasirAfterSave = false;
+  window.returnOriginAfterSave = '';
   showPage('produk',document.querySelectorAll('nav button')[2]);
   if(tab)$('produk')._splitTabs?.setTab(tab);
 }
@@ -4727,19 +5270,36 @@ function openQuickAddFromKasir(){
   if(!canEditProducts())return alert('Akses tambah produk dibatasi oleh Owner.');
   resetForm();
   window.returnToKasirAfterSave = true;
+  window.returnOriginAfterSave = 'kasir';
   showPage('produk',document.querySelectorAll('nav button')[2]);
   $('produk')._splitTabs?.setTab('input');
   $('productFormHeading').textContent='📦 Tambah Produk Baru (Dari Kasir)';
   setTimeout(()=>$('pname')?.focus(),120);
 }
-function openProductEditor(id, fromKasir = false){
+function openQuickAddFromBelanja(){
+  if(!canEditProducts())return alert('Akses tambah produk dibatasi oleh Owner.');
+  resetForm();
+  window.returnToKasirAfterSave = false;
+  window.returnOriginAfterSave = 'belanja';
+  showPage('produk',document.querySelectorAll('nav button')[2]);
+  $('produk')._splitTabs?.setTab('input');
+  $('productFormHeading').textContent='📦 Tambah Produk Baru (Dari Belanja Agen)';
+  setTimeout(()=>$('pname')?.focus(),120);
+}
+function openProductEditor(id, origin = false){
 if(!canEditProducts())return;
 let p=products.find(x=>x.id===Number(id));
 if(!p)return;
 editProduct(Number(id));
 goProduk('input');
-window.returnToKasirAfterSave = Boolean(fromKasir);
-$('productFormHeading').textContent = fromKasir ? '✏️ Edit Produk (Dari Kasir)' : '✏️ Edit Produk';
+const resolvedOrigin = origin === true ? 'kasir' : (origin || '');
+window.returnOriginAfterSave = resolvedOrigin;
+window.returnToKasirAfterSave = resolvedOrigin === 'kasir';
+const headingMap = {
+  kasir: '✏️ Edit Produk (Dari Kasir)',
+  belanja: '✏️ Edit Produk (Dari Belanja Agen)'
+};
+$('productFormHeading').textContent = headingMap[resolvedOrigin] || '✏️ Edit Produk';
 $('pid').value=p.id;
 setTimeout(()=>$('pname')?.focus({preventScroll:true}), 120);
 }
@@ -4754,12 +5314,12 @@ let card=e.target.closest('.product-pick-row[data-product-id]');
 if(!card||e.target.closest('button,select,input'))return;
 cancelLongPress();longPressTriggered=false;activeLongPressCard=card;
 longPressStartX=e.clientX||0;longPressStartY=e.clientY||0;
-const isFromKasir = Boolean(card.closest('#productList'));
+const origin = card.closest('#productList') ? 'kasir' : (card.closest('#purchaseProductList') ? 'belanja' : '');
 longPressTimer=setTimeout(()=>{
 longPressTriggered=true;
 let id=card.dataset.productId;
 if(navigator.vibrate)navigator.vibrate(45);
-cancelLongPress();openProductEditor(id, isFromKasir);
+cancelLongPress();openProductEditor(id, origin);
 },550);
 }
 function moveLongPress(e){
@@ -4779,8 +5339,8 @@ if(!canEditProducts())return;
 if(e.target.closest('.product-pick-row[data-product-id]')){
 e.preventDefault();
 let card=e.target.closest('.product-pick-row[data-product-id]');
-const isFromKasir = Boolean(card.closest('#productList'));
-openProductEditor(card.dataset.productId, isFromKasir);
+const origin = card.closest('#productList') ? 'kasir' : (card.closest('#purchaseProductList') ? 'belanja' : '');
+openProductEditor(card.dataset.productId, origin);
 }
 });
 });
@@ -5052,16 +5612,105 @@ function promptDeleteUnit(targetSelectId = 'pbaseUnit') {
 // =========================================================================
 // PERHITUNGAN KEUNTUNGAN PRODUK & VARIAN
 // =========================================================================
+function getExactBaseCost(){
+  const rawAttr = $('pcost')?.dataset?.rawCost;
+  if(rawAttr !== undefined && rawAttr !== '' && Number.isFinite(Number(rawAttr))){
+    return Number(rawAttr);
+  }
+  return parseMoney($('pcost')?.value) || 0;
+}
+
+function setExactBaseCost(exactVal, updateDisplay = true){
+  const pcostEl = $('pcost');
+  if(!pcostEl) return;
+  const num = Number(exactVal);
+  if(Number.isFinite(num) && num > 0){
+    pcostEl.dataset.rawCost = String(num);
+    if(updateDisplay){
+      pcostEl.value = formatThousands(Math.round(num * 100) / 100);
+    }
+  } else {
+    pcostEl.dataset.rawCost = '';
+    if(updateDisplay) pcostEl.value = '';
+  }
+}
+
+function onBaseCostInput(){
+  const baseCost = parseMoney($('pcost').value) || 0;
+  $('pcost').dataset.rawCost = baseCost > 0 ? String(baseCost) : '';
+  [...$('variantRows').querySelectorAll('.variant-card')].forEach(card => {
+    const factor = Number(card.querySelector('.v-factor')?.value) || 0;
+    const vCostInput = card.querySelector('.v-cost');
+    if(vCostInput){
+      vCostInput.dataset.manualCost = '0';
+      vCostInput.value = (baseCost > 0 && factor >= 2) ? formatThousands(Math.round(baseCost * factor * 100) / 100) : '';
+    }
+  });
+  calculateProductProfit();
+}
+
+function onVariantCostOrFactorInput(changedEl){
+  const card = changedEl.closest('.variant-card');
+  if(!card) return;
+  const vCostInput = card.querySelector('.v-cost');
+  const factorInput = card.querySelector('.v-factor');
+  const factor = Number(factorInput?.value) || 0;
+
+  if(changedEl === vCostInput){
+    const raw = String(vCostInput.value || '').trim();
+    const parsedVCost = parseMoney(raw);
+    if(raw === '' || parsedVCost <= 0){
+      vCostInput.dataset.manualCost = '0';
+      const curBaseCost = getExactBaseCost();
+      if(raw === '' && curBaseCost > 0 && factor >= 2){
+        vCostInput.value = formatThousands(Math.round(curBaseCost * factor * 100) / 100);
+      }
+    } else {
+      vCostInput.dataset.manualCost = '1';
+      if(factor >= 2){
+        const exactUnitCost = parsedVCost / factor;
+        setExactBaseCost(exactUnitCost, true);
+        [...$('variantRows').querySelectorAll('.variant-card')].forEach(otherCard => {
+          if(otherCard === card) return;
+          const otherFactor = Number(otherCard.querySelector('.v-factor')?.value) || 0;
+          const otherCostInput = otherCard.querySelector('.v-cost');
+          if(otherCostInput && otherCostInput.dataset.manualCost !== '1'){
+            otherCostInput.value = (exactUnitCost > 0 && otherFactor >= 2) ? formatThousands(Math.round(exactUnitCost * otherFactor * 100) / 100) : '';
+          }
+        });
+      }
+    }
+  } else if(changedEl === factorInput){
+    const baseCost = getExactBaseCost();
+    if(vCostInput && vCostInput.dataset.manualCost !== '1'){
+      vCostInput.value = (baseCost > 0 && factor >= 2) ? formatThousands(Math.round(baseCost * factor * 100) / 100) : '';
+    } else if(vCostInput && vCostInput.dataset.manualCost === '1' && factor >= 2){
+      const vCost = parseMoney(vCostInput.value) || 0;
+      const exactUnitCost = vCost / factor;
+      setExactBaseCost(exactUnitCost, true);
+    }
+  }
+  calculateProductProfit();
+}
+
+function updateVariantCardHeaders(){
+  [...$('variantRows').querySelectorAll('.variant-card')].forEach((card, idx) => {
+    const titleEl = card.querySelector('.variant-card-title');
+    if(titleEl) titleEl.textContent = 'Varian #' + (idx + 1);
+  });
+}
+
 function calculateProductProfit(){
-let c=parseMoney($('pcost').value)||0,p=parseMoney($('pprice').value)||0,l=p-c;
+let c=getExactBaseCost(),p=parseMoney($('pprice').value)||0,l=p-c;
 const baseUnit=($('pbaseUnit')?.value||'PCS').trim().toUpperCase()||'PCS';
 if($('profitBaseUnitLabel'))$('profitBaseUnitLabel').textContent=baseUnit;
+if($('costBaseUnitLabel'))$('costBaseUnitLabel').textContent=baseUnit;
+if($('priceBaseUnitLabel'))$('priceBaseUnitLabel').textContent=baseUnit;
 $('productProfit').textContent=money(l);
 $('productMargin').textContent=(p>0?(l/p*100):0).toFixed(2)+'%';
 $('productMarkup').textContent=(c>0?(l/c*100):0).toFixed(2)+'%';
 $('productProfit').style.color=l>=0?'green':'red';
 
-// Update info modal & laba tiap baris varian + ringkasan di panel Informasi Keuntungan
 const summaryEl=$('variantProfitSummary');
 const cards=[...$('variantRows').querySelectorAll('.variant-card')];
 const summaryLines=[];
@@ -5069,11 +5718,13 @@ cards.forEach(card=>{
   const vName=(card.querySelector('.v-name')?.value||'').trim().toUpperCase();
   const factor=Number(card.querySelector('.v-factor')?.value)||0;
   const vPrice=parseMoney(card.querySelector('.v-price')?.value)||0;
-  const vCost=c*factor;
+  const vCostInput=card.querySelector('.v-cost');
+  const vCost=(vCostInput?.dataset.manualCost==='1') ? (parseMoney(vCostInput.value)||0) : (c*(factor>0?factor:1));
+  const autoUnitCost=factor>0 ? (vCost/factor) : c;
   const vProfit=vPrice-vCost;
   const metaEl=card.querySelector('.variant-meta-bar');
   if(metaEl){
-    metaEl.innerHTML=`<span>Modal (${factor>0?factor:0} ${esc(baseUnit)}): <b>${money(vCost)}</b></span><span style="color:${vProfit>=0?'#15803d':'#dc2626'}">Laba: <b>${money(vProfit)}</b></span>`;
+    metaEl.innerHTML=`<span>Modal Satuan: <b>${money(autoUnitCost)}/${esc(baseUnit)}</b> · Total Modal: <b>${money(vCost)}</b></span><span style="color:${vProfit>=0?'#15803d':'#dc2626'}">Laba: <b>${money(vProfit)}</b></span>`;
   }
   if(vName && factor>=2){
     summaryLines.push(`<div class="variant-profit-item"><span><b>${esc(vName)}</b> (×${factor}) · Modal ${money(vCost)}</span><b style="color:${vProfit>=0?'#15803d':'#dc2626'}">Laba ${money(vProfit)}</b></div>`);
@@ -5090,24 +5741,48 @@ if(summaryEl){
 }
 }
 
-function addVariantRow(name='',factor='',price=''){
+function addVariantRow(name='',factor='',price='',variantCost='',isManual=false){
 let card=document.createElement('div');
 card.className='variant-card';
 const selectedUnit=String(name||'').trim().toUpperCase();
+const baseUnit=($('pbaseUnit')?.value||'PCS').trim().toUpperCase()||'PCS';
+const baseCost=getExactBaseCost();
+const numFactor=Number(factor)||0;
+const hasExplicitCost=variantCost!==''&&variantCost!==null&&variantCost!==undefined&&Number(variantCost)>0;
+const displayCost=hasExplicitCost
+  ? formatThousands(variantCost)
+  : ((baseCost>0&&numFactor>=2)?formatThousands(Math.round(baseCost*numFactor*100)/100):'');
 card.innerHTML=`
-<div class="variant-row">
-  <select class="v-name" onchange="calculateProductProfit()">
-    ${buildUnitOptionsHTML(selectedUnit, true)}
-  </select>
-  <input class="v-factor" type="number" min="2" step="1" placeholder="Isi / faktor" value="${factor}" oninput="calculateProductProfit()">
-  <input class="v-price money-input" type="text" inputmode="decimal" placeholder="Harga jual" value="${formatThousands(price)}" oninput="calculateProductProfit()">
-  <button type="button" onclick="this.closest('.variant-card').remove();calculateProductProfit()">×</button>
+<div class="variant-card-header">
+  <span class="variant-card-title">Varian</span>
+  <button type="button" class="variant-del-btn" onclick="this.closest('.variant-card').remove();updateVariantCardHeaders();calculateProductProfit()">🗑️ Hapus</button>
 </div>
-<div class="variant-meta-bar"><span>Modal: <b>Rp0</b></span><span>Laba: <b>Rp0</b></span></div>`;
+<div class="variant-row">
+  <div class="variant-field">
+    <label>Satuan Varian</label>
+    <select class="v-name" onchange="calculateProductProfit()">
+      ${buildUnitOptionsHTML(selectedUnit, true)}
+    </select>
+  </div>
+  <div class="variant-field">
+    <label>Isi / Faktor (${esc(baseUnit)})</label>
+    <input class="v-factor" type="number" min="2" step="1" placeholder="Contoh: 5" value="${factor}" oninput="onVariantCostOrFactorInput(this)">
+  </div>
+  <div class="variant-field">
+    <label>Harga Modal Varian</label>
+    <input class="v-cost money-input" type="text" inputmode="decimal" placeholder="Otomatis hitung satuan" value="${displayCost}" data-manual-cost="${(isManual&&hasExplicitCost)?'1':'0'}" oninput="onVariantCostOrFactorInput(this)">
+  </div>
+  <div class="variant-field">
+    <label>Harga Jual Varian</label>
+    <input class="v-price money-input" type="text" inputmode="decimal" placeholder="Harga jual" value="${formatThousands(price)}" oninput="calculateProductProfit()">
+  </div>
+</div>
+<div class="variant-meta-bar"><span>Modal Satuan: <b>Rp0</b></span><span>Laba: <b>Rp0</b></span></div>`;
 $('variantRows').appendChild(card);
 if(selectedUnit){
   card.querySelector('.v-name').value=selectedUnit;
 }
+updateVariantCardHeaders();
 calculateProductProfit();
 }
 
@@ -5117,24 +5792,46 @@ function syncBaseVariantPrice(){
  if($('baseVariantName'))$('baseVariantName').value=unit;
  if($('baseVariantFactor'))$('baseVariantFactor').value='1';
  if($('baseVariantPrice'))$('baseVariantPrice').value=price;
+ if($('costBaseUnitLabel'))$('costBaseUnitLabel').textContent=unit;
+ if($('priceBaseUnitLabel'))$('priceBaseUnitLabel').textContent=unit;
+ [...$('variantRows').querySelectorAll('.variant-card')].forEach(card=>{
+   const factorLabel=card.querySelectorAll('.variant-field label')[1];
+   if(factorLabel)factorLabel.textContent='Isi / Faktor ('+unit+')';
+ });
  calculateProductProfit();
 }
 
 function setVariantRows(p){
 $('variantRows').innerHTML='';
 const baseUnit=(p?.baseUnit||'PCS').trim().toUpperCase()||'PCS';
+const baseCost=Number(p?.cost)||0;
 renderUnitOptions(baseUnit);
 syncBaseVariantPrice();
 const extraVariants=(p?.variants||[]).filter(v=>!(Number(v.factor)===1&&String(v.name||'').trim().toUpperCase()===baseUnit));
-extraVariants.forEach(v=>addVariantRow(v.name,v.factor,v.price));
+extraVariants.forEach(v=>{
+  const f=Math.max(1,Number(v.factor)||1);
+  const autoCalc=baseCost*f;
+  const savedVCost=(v.cost!==undefined&&v.cost!==null&&Number(v.cost)>0)?Number(v.cost):autoCalc;
+  const isCustom=Math.abs(savedVCost-autoCalc)>0.005 || (savedVCost>0 && Math.abs((savedVCost/f)-baseCost)<0.0001 && String(savedVCost/f).length > 8);
+  addVariantRow(v.name,v.factor,v.price,savedVCost>0?savedVCost:'',isCustom);
+});
 calculateProductProfit();
 }
 
 function getVariantRows(baseUnit){
 let cards=[...$('variantRows').querySelectorAll('.variant-card')];
-cards=cards.filter(r=>r.querySelector('.v-name').value.trim()||r.querySelector('.v-factor').value.trim()||r.querySelector('.v-price').value.trim());
+cards=cards.filter(r=>r.querySelector('.v-name').value.trim()||r.querySelector('.v-factor').value.trim()||r.querySelector('.v-price').value.trim()||r.querySelector('.v-cost').value.trim());
 if(!cards.length)return [];
-let vs=cards.map(r=>({name:r.querySelector('.v-name').value.trim().toUpperCase(),factor:Number(r.querySelector('.v-factor').value),price:parseMoney(r.querySelector('.v-price').value)}));
+const baseCost=getExactBaseCost();
+let vs=cards.map(r=>{
+  const name=r.querySelector('.v-name').value.trim().toUpperCase();
+  const factor=Number(r.querySelector('.v-factor').value);
+  const price=parseMoney(r.querySelector('.v-price').value);
+  const vCostInput=r.querySelector('.v-cost');
+  const rawVCost=parseMoney(vCostInput?.value)||0;
+  const cost=(vCostInput?.dataset.manualCost==='1'&&rawVCost>0)?rawVCost:(baseCost*(factor||1));
+  return {name,factor,price,cost};
+});
 if(vs.some(v=>!v.name||!Number.isInteger(v.factor)||v.factor<2||!Number.isFinite(v.price)||v.price<0))throw Error('Periksa satuan varian, isi/faktor (minimal 2), dan harga jual varian');
 if(vs.some(v=>v.name===baseUnit))throw Error('Nama varian tambahan tidak boleh sama dengan satuan utama ('+baseUnit+')');
 if(new Set(vs.map(v=>v.name)).size!==vs.length)throw Error('Nama varian satuan tidak boleh sama');
@@ -5327,7 +6024,7 @@ let id=Number($('pid').value);
 let name=$('pname').value.trim();
 let barcode=$('pbarcode').value.trim();
 let category=$('pcat').value||'Umum';
-let cost=parseMoney($('pcost').value);
+let cost=getExactBaseCost();
 let price=parseMoney($('pprice').value);
 let stock=$('pstock').value.trim()===''?0:Number($('pstock').value);
 if(!name)return alert('Nama barang wajib diisi');
@@ -5339,7 +6036,7 @@ let baseUnit=$('pbaseUnit').value.trim().toUpperCase()||'PCS';
 let variants;
 try{
 const extraVariants=getVariantRows(baseUnit);
-variants=[{name:baseUnit,factor:1,price:price},...extraVariants];
+variants=[{name:baseUnit,factor:1,price:price,cost:cost},...extraVariants];
 }catch(e){return alert(e.message)}
 if(id){
 let p=products.find(x=>x.id===id);
@@ -5350,29 +6047,50 @@ Object.assign(p,{name,barcode,category,cost,price,stock,baseUnit,variants});
 cart=cart.map(item=>{
 if(item.id!==id)return item;
 let variant=variants[item.vIndex]||variants[0];
-return {...item,name,barcode,category,cost,price:variant.price,unit:variant.name,factor:variant.factor};
+let unitCost=getVariantUnitCost({cost},variant,variant.factor);
+return {...item,name,barcode,category,cost,variantCost:unitCost,price:variant.price,unit:variant.name,factor:variant.factor};
 });
 }else{
 products.push({id:Date.now(),name,barcode,category,cost,price,stock,baseUnit,variants});
 }
-const shouldReturnKasir = window.returnToKasirAfterSave === true;
+const returnOrigin = window.returnOriginAfterSave || (window.returnToKasirAfterSave ? 'kasir' : '');
+window.returnOriginAfterSave = '';
 window.returnToKasirAfterSave = false;
+// Sinkronkan juga item di keranjang belanja agen jika sedang diedit
+if(id){
+  const updatedProd = products.find(x=>x.id===id);
+  if(updatedProd){
+    const vs = updatedProd.variants || [{name: updatedProd.baseUnit||'PCS', factor: 1, price: updatedProd.price}];
+    purchaseCart = purchaseCart.map(item=>{
+      if(item.id!==id)return item;
+      const v = vs[item.vIndex] || vs[0];
+      const f = Number(v.factor)||1;
+      return {...item, name: updatedProd.name, unit: v.name, factor: f, cost: getVariantUnitCost(updatedProd, v, f)};
+    });
+  }
+}
 save();resetForm();refresh();updateCart();
-if(shouldReturnKasir){
+if(returnOrigin === 'kasir'){
   showPage('kasir', null);
   alert(id ? 'Produk berhasil diperbarui! Kembali ke halaman Kasir.' : 'Barang berhasil ditambahkan! Kembali ke halaman Kasir.');
+}else if(returnOrigin === 'belanja'){
+  showPage('belanja', null);
+  alert(id ? 'Produk berhasil diperbarui! Kembali ke halaman Belanja Agen.' : 'Barang berhasil ditambahkan! Kembali ke halaman Belanja Agen.');
 }else{
   $('produk')._splitTabs?.setTab('list');
   alert(id?'Produk berhasil diperbarui!':'Barang berhasil ditambahkan!');
 }
 }
 function resetForm(){
+window.returnOriginAfterSave = '';
 window.returnToKasirAfterSave = false;
 ['pid','pname','pbarcode','pcost','pprice','pstock'].forEach(id=>$(id).value='');
+if($('pcost'))$('pcost').dataset.rawCost='';
 renderCategoryOptions('');
 renderUnitOptions('PCS');
 $('pcat').value='';$('pbaseUnit').value='PCS';
 $('productFormHeading').textContent='📦 Input Barang Baru';
+if($('deleteEditingProductBtn'))$('deleteEditingProductBtn').style.display='none';
 setVariantRows({baseUnit:'PCS',price:''});calculateProductProfit();
 }
 function editProduct(id){
@@ -5381,10 +6099,11 @@ let p=products.find(x=>x.id===id);if(!p)return;
 renderCategoryOptions(p.category||'');
 renderUnitOptions(p.baseUnit||'PCS');
 $('pid').value=p.id;$('pname').value=p.name;$('pbarcode').value=p.barcode||'';
-$('pcat').value=p.category||'';$('pcost').value=formatThousands(p.cost);$('pprice').value=formatThousands(p.price);
+$('pcat').value=p.category||'';setExactBaseCost(p.cost,true);$('pprice').value=formatThousands(p.price);
 $('pstock').value=p.stock;$('pbaseUnit').value=(p.baseUnit||'PCS').toUpperCase();
 setVariantRows(p);calculateProductProfit();
 $('productFormHeading').textContent='✏️ Edit Produk';
+if($('deleteEditingProductBtn'))$('deleteEditingProductBtn').style.display=canEditProducts()?'inline-flex':'none';
 $('produk')._splitTabs?.setTab('input');
 window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -5394,6 +6113,29 @@ if(!confirm('Hapus produk ini?'))return;
 if(cart.some(x=>x.id===id))return alert('Keluarkan produk dari keranjang terlebih dahulu.');
 if(purchaseCart.some(x=>x.id===id))return alert('Keluarkan produk dari keranjang belanja agen terlebih dahulu.');
 products=products.filter(p=>p.id!==id);save();refresh();
+}
+function deleteEditingProduct(){
+if(!canEditProducts())return alert('Akses hapus produk dibatasi oleh Owner.');
+const id=Number($('pid')?.value);
+if(!id)return;
+const p=products.find(x=>x.id===id);
+if(!p)return alert('Produk tidak ditemukan.');
+if(!confirm('Hapus produk "'+p.name+'" secara permanen?'))return;
+if(cart.some(x=>x.id===id))return alert('Keluarkan produk dari keranjang kasir terlebih dahulu.');
+if(purchaseCart.some(x=>x.id===id))return alert('Keluarkan produk dari keranjang belanja agen terlebih dahulu.');
+const returnOrigin=window.returnOriginAfterSave||(window.returnToKasirAfterSave?'kasir':'');
+products=products.filter(item=>item.id!==id);
+save();
+resetForm();
+refresh();
+if(returnOrigin==='kasir'){
+  showPage('kasir',null);
+}else if(returnOrigin==='belanja'){
+  showPage('belanja',null);
+}else{
+  $('produk')._splitTabs?.setTab('list');
+}
+alert('Produk "'+p.name+'" berhasil dihapus!');
 }
 function adjustProductStock(id,amount){
 if(!canEditStockManual())return alert('Akses ubah stok manual dibatasi oleh Owner.');
@@ -5436,7 +6178,7 @@ const hideProfit=shouldHideProfit();
 $('productList').innerHTML=list.map(p=>{
 let vs=p.variants||[{name:p.baseUnit||'PCS',factor:1,price:p.price}];
 let idx=Math.max(0,Math.min(vs.length-1,Number(window.selectedUnits?.[p.id]||0)));
-let v=vs[idx],unitCost=Number(p.cost||0)*(Number(v.factor)||1),profit=Number(v.price||0)-unitCost;
+let v=vs[idx],unitCost=getVariantUnitCost(p,v,v.factor),profit=Number(v.price||0)-unitCost;
 let used=cart.filter(x=>x.id===p.id).reduce((a,x)=>a+x.qty*(x.factor||1),0);
 let available=p.stock-used;
 let qty=cart.filter(x=>x.id===p.id&&x.vIndex===idx).reduce((a,x)=>a+x.qty,0);
@@ -5521,7 +6263,7 @@ let item=cart.find(x=>x.id===id&&x.vIndex===vIndex);
 let used=cart.filter(x=>x.id===id).reduce((a,x)=>a+x.qty*(x.factor||1),0);
 if(used+v.factor>p.stock)return alert('Stok tidak mencukupi!');
 if(item)item.qty++;
-else cart.push({...p,qty:1,vIndex,unit:v.name,factor:v.factor,price:v.price,lineKey:id+'_'+vIndex});
+else cart.push({...p,qty:1,vIndex,unit:v.name,factor:v.factor,variantCost:getVariantUnitCost(p,v,v.factor),price:v.price,lineKey:id+'_'+vIndex});
 updateCart();renderProducts();
 }
 function changeQty(id,amount,vIndex=0){
@@ -5553,7 +6295,8 @@ let qty=cart.reduce((a,b)=>a+b.qty,0);
 const hideProfit=shouldHideProfit();
 $('totalItems').textContent=qty+' Unit';
 $('cartList').innerHTML=cart.map(p=>{
-let labaPerUnit=Number(p.price||0)-(Number(p.cost||0)*(Number(p.factor)||1));
+let itemModalPerUnit=(p.variantCost!==undefined&&Number(p.variantCost)>0)?Number(p.variantCost):(Number(p.cost||0)*(Number(p.factor)||1));
+let labaPerUnit=Number(p.price||0)-itemModalPerUnit;
 let totalLaba=labaPerUnit*p.qty;
 return `<div class="cartitem">
 <div class="cart-item-info">
@@ -5576,7 +6319,7 @@ let rawDisc=canGiveDiscount()?(Number($('discount').value)||0):0;
 let disc=Math.min(sub,Math.max(0,rawDisc));
 let rate=Math.max(0,Math.min(100,Number($('tax').value)||0));
 let total=sub-disc+Math.round((sub-disc)*rate/100);
-let grossProfit=cart.reduce((a,b)=>a+(Number(b.price||0)-Number(b.cost||0)*(Number(b.factor)||1))*b.qty,0);
+let grossProfit=cart.reduce((a,b)=>{const unitModal=(b.variantCost!==undefined&&Number(b.variantCost)>0)?Number(b.variantCost):(Number(b.cost||0)*(Number(b.factor)||1));return a+(Number(b.price||0)-unitModal)*b.qty;},0);
 let estimatedProfit=grossProfit-disc;
 $('subtotal').textContent=money(sub);$('grand').textContent=money(total);
 $('cartProfit').textContent=money(estimatedProfit);
@@ -5584,6 +6327,7 @@ $('cartProfit').style.color=estimatedProfit>=0?'#16a34a':'#dc2626';
 $('change').textContent=money(Math.max(0,(Number($('paid').value)||0)-total));
 updateStickyTotals();
 updateSplitTabCounts();
+updateEditStagingBanners();
 }
 function payExact(){
 if(!cart.length)return alert('Keranjang kosong');
@@ -5596,6 +6340,7 @@ if($('method').value!=='Tunai')return alert('Uang bulat hanya untuk pembayaran t
 $('paid').value=Math.ceil(getCurrentTotal()/1000)*1000;updateCart();
 }
 function checkout(){
+if(stagingEditTarget && stagingEditTarget.type === 'kasir'){ mergeStagedCartToEditedTransaction('kasir'); return; }
 if(!cart.length)return alert('Keranjang kosong');
 for(let i of cart){let p=products.find(x=>x.id===i.id);let requiredStock=i.qty*(Number(i.factor)||1);if(!p||p.stock<requiredStock)return alert('Stok tidak cukup untuk produk: '+i.name)}
 let sub=cart.reduce((a,b)=>a+b.price*b.qty,0);
@@ -5606,7 +6351,7 @@ let tax=Math.round((sub-disc)*rate/100),total=sub-disc+tax;
 let paid=Number($('paid').value)||0,method=$('method').value;
 if(method!=='Tunai'&&paid===0)paid=total;
 if(paid<total)return alert('Pembayaran kurang!');
-let grossProfit=cart.reduce((a,b)=>a+(b.price-b.cost*(b.factor||1))*b.qty,0);
+let grossProfit=cart.reduce((a,b)=>{const unitModal=(b.variantCost!==undefined&&Number(b.variantCost)>0)?Number(b.variantCost):(Number(b.cost||0)*(Number(b.factor)||1));return a+(Number(b.price||0)-unitModal)*b.qty;},0);
 let cashierName=currentUser?.name||currentUser?.username||'Owner';
 let t={
   id:'TRX'+Date.now(),
@@ -5899,17 +6644,472 @@ $('detailModal').style.display = 'block';
 pushModalHistory();
 }
 function reprint(id){let t=transactions.find(x=>x.id===id);if(t)printReceipt(t)}
+// =========================================================================
+// FITUR EDIT TRANSAKSI SELESAI (KURANGI STOK & TAMBAH STOK VIA KERANJANG)
+// =========================================================================
+let editingCompletedTrxState = null;
+let stagingEditTarget = null;
+
+function updateEditStagingBanners(){
+  const kBanner = $('kasirEditStagingBanner');
+  const bBanner = $('belanjaEditStagingBanner');
+  if(kBanner){
+    if(stagingEditTarget && stagingEditTarget.type === 'kasir'){
+      kBanner.style.display = 'flex';
+      if($('kasirEditStagingTitle')) $('kasirEditStagingTitle').textContent = '✏️ Tambah Stok ke Transaksi ' + stagingEditTarget.id;
+      if($('kasirEditStagingSub')) $('kasirEditStagingSub').textContent = 'Barang di keranjang (' + cart.reduce((a,b)=>a+b.qty,0) + ' item) akan digabung ke transaksi ' + stagingEditTarget.id + '.';
+    } else {
+      kBanner.style.display = 'none';
+    }
+  }
+  if(bBanner){
+    if(stagingEditTarget && stagingEditTarget.type === 'belanja'){
+      bBanner.style.display = 'flex';
+      if($('belanjaEditStagingTitle')) $('belanjaEditStagingTitle').textContent = '✏️ Tambah Stok ke Belanja Agen ' + stagingEditTarget.id;
+      if($('belanjaEditStagingSub')) $('belanjaEditStagingSub').textContent = 'Barang di keranjang (' + purchaseCart.reduce((a,b)=>a+b.qty,0) + ' item) akan digabung ke belanja ' + stagingEditTarget.id + '.';
+    } else {
+      bBanner.style.display = 'none';
+    }
+  }
+}
+
+function startAddItemsToCompletedTransaction(type, id){
+  if(!editingCompletedTrxState || editingCompletedTrxState.id !== id || editingCompletedTrxState.type !== type){
+    if(type === 'kasir'){
+      const t = transactions.find(x => x.id === id);
+      if(!t) return alert('Transaksi tidak ditemukan');
+      const baseAfterDisc = Math.max(0, (Number(t.subtotal)||0) - (Number(t.discount)||0));
+      const taxRate = baseAfterDisc > 0 ? Math.round(((Number(t.tax)||0) / baseAfterDisc) * 100) : 0;
+      editingCompletedTrxState = {
+        type: 'kasir',
+        id: t.id,
+        items: (t.items || []).map(x => ({...x})),
+        discount: Number(t.discount) || 0,
+        taxRate,
+        paid: Number(t.paid) || 0,
+        method: t.method || 'Tunai'
+      };
+    } else {
+      const p = purchases.find(x => x.id === id);
+      if(!p) return alert('Riwayat belanja tidak ditemukan');
+      editingCompletedTrxState = {
+        type: 'belanja',
+        id: p.id,
+        items: (p.items || []).map(x => ({...x})),
+        supplier: p.supplier || 'Tidak disebutkan'
+      };
+    }
+  }
+
+  stagingEditTarget = {
+    type,
+    id,
+    savedDraft: JSON.parse(JSON.stringify(editingCompletedTrxState))
+  };
+
+  if(type === 'kasir'){
+    if(cart.length > 0){
+      if(!confirm('Keranjang kasir saat ini akan dikosongkan sementara untuk menampung barang tambahan ke transaksi ' + id + '. Lanjutkan?')){
+        stagingEditTarget = null;
+        return;
+      }
+      cart = [];
+    }
+    updateCart();
+    closeTransactionDetail();
+    updateEditStagingBanners();
+    showPage('kasir', null);
+    $('kasir')._splitTabs?.setTab('first');
+  } else {
+    if(purchaseCart.length > 0){
+      if(!confirm('Keranjang belanja agen saat ini akan dikosongkan sementara untuk menampung barang tambahan ke nota ' + id + '. Lanjutkan?')){
+        stagingEditTarget = null;
+        return;
+      }
+      purchaseCart = [];
+    }
+    renderPurchaseUI();
+    closeTransactionDetail();
+    updateEditStagingBanners();
+    showPage('belanja', null);
+    $('belanja')._splitTabs?.setTab('first');
+  }
+}
+
+function cancelEditTransactionStaging(type){
+  if(!stagingEditTarget || stagingEditTarget.type !== type) return;
+  const targetId = stagingEditTarget.id;
+  const draft = stagingEditTarget.savedDraft;
+  stagingEditTarget = null;
+  if(type === 'kasir'){
+    cart = [];
+    updateCart();
+  } else {
+    purchaseCart = [];
+    renderPurchaseUI();
+  }
+  updateEditStagingBanners();
+  editingCompletedTrxState = draft;
+  if(type === 'kasir'){
+    showPage('riwayat', null);
+    openCompletedTransactionEditor('kasir', targetId, true);
+  } else {
+    showPage('belanja', null);
+    $('belanja')._splitTabs?.setTab('third');
+    openCompletedTransactionEditor('belanja', targetId, true);
+  }
+}
+
+function mergeStagedCartToEditedTransaction(type){
+  if(!stagingEditTarget || stagingEditTarget.type !== type) return;
+  const targetId = stagingEditTarget.id;
+  const draft = stagingEditTarget.savedDraft;
+  const stagedList = type === 'kasir' ? cart : purchaseCart;
+
+  if(!stagedList.length){
+    return alert('Keranjang masih kosong. Tambahkan barang terlebih dahulu sebelum menggabungkan.');
+  }
+
+  stagedList.forEach(newItem => {
+    const fNew = Number(newItem.factor) || 1;
+    const uNew = String(newItem.unit || newItem.baseUnit || 'PCS').toUpperCase();
+    const existing = draft.items.find(oldItem =>
+      oldItem.id === newItem.id &&
+      (Number(oldItem.factor) || 1) === fNew &&
+      String(oldItem.unit || oldItem.baseUnit || 'PCS').toUpperCase() === uNew
+    );
+    if(existing){
+      existing.qty = (Number(existing.qty) || 0) + (Number(newItem.qty) || 0);
+    } else {
+      draft.items.push({...newItem});
+    }
+  });
+
+  if(type === 'kasir'){
+    cart = [];
+    updateCart();
+  } else {
+    purchaseCart = [];
+    renderPurchaseUI();
+  }
+
+  stagingEditTarget = null;
+  updateEditStagingBanners();
+  editingCompletedTrxState = draft;
+
+  if(type === 'kasir'){
+    showPage('riwayat', null);
+    openCompletedTransactionEditor('kasir', targetId, true);
+  } else {
+    showPage('belanja', null);
+    $('belanja')._splitTabs?.setTab('third');
+    openCompletedTransactionEditor('belanja', targetId, true);
+  }
+}
+
+function openCompletedTransactionEditor(type, id, keepDraft = false){
+  if(!keepDraft){
+    if(type === 'kasir'){
+      const t = transactions.find(x => x.id === id);
+      if(!t) return alert('Transaksi tidak ditemukan');
+      const baseAfterDisc = Math.max(0, (Number(t.subtotal)||0) - (Number(t.discount)||0));
+      const taxRate = baseAfterDisc > 0 ? Math.round(((Number(t.tax)||0) / baseAfterDisc) * 100) : 0;
+      editingCompletedTrxState = {
+        type: 'kasir',
+        id: t.id,
+        items: (t.items || []).map(x => ({...x})),
+        discount: Number(t.discount) || 0,
+        taxRate,
+        paid: Number(t.paid) || 0,
+        method: t.method || 'Tunai'
+      };
+    } else {
+      const p = purchases.find(x => x.id === id);
+      if(!p) return alert('Riwayat belanja tidak ditemukan');
+      editingCompletedTrxState = {
+        type: 'belanja',
+        id: p.id,
+        items: (p.items || []).map(x => ({...x})),
+        supplier: p.supplier || 'Tidak disebutkan'
+      };
+    }
+  }
+  renderCompletedTransactionEditorModal();
+  $('detailModal').style.display = 'block';
+  pushModalHistory();
+}
+
+function changeCompletedTrxItemQty(idx, delta){
+  const st = editingCompletedTrxState;
+  if(!st || !st.items[idx]) return;
+  const item = st.items[idx];
+  const nextQty = (Number(item.qty) || 0) + delta;
+
+  if(nextQty <= 0){
+    if(st.items.length <= 1){
+      return alert('Minimal harus tersisa 1 barang di dalam transaksi.');
+    }
+    if(!confirm('Hapus "' + item.name + '" dari transaksi ini?')) return;
+    st.items.splice(idx, 1);
+    renderCompletedTransactionEditorModal();
+    return;
+  }
+
+  if(st.type === 'kasir' && delta > 0){
+    const origTrx = transactions.find(x => x.id === st.id);
+    const origBaseUsed = (origTrx?.items || [])
+      .filter(x => x.id === item.id)
+      .reduce((a, b) => a + (Number(b.qty)||0) * (Number(b.factor)||1), 0);
+    const prod = products.find(p => p.id === item.id);
+    const maxStockAvailable = (prod ? Number(prod.stock || 0) : 0) + origBaseUsed;
+
+    const plannedBaseUsed = st.items.reduce((sum, it, i) => {
+      if(it.id !== item.id) return sum;
+      const q = (i === idx) ? nextQty : (Number(it.qty) || 0);
+      return sum + q * (Number(it.factor) || 1);
+    }, 0);
+
+    if(plannedBaseUsed > maxStockAvailable){
+      return alert('Stok produk "' + item.name + '" tidak mencukupi!');
+    }
+  }
+
+  item.qty = nextQty;
+  renderCompletedTransactionEditorModal();
+}
+
+function removeCompletedTrxItem(idx){
+  const st = editingCompletedTrxState;
+  if(!st || !st.items[idx]) return;
+  if(st.items.length <= 1){
+    return alert('Minimal harus tersisa 1 barang di dalam transaksi.');
+  }
+  if(!confirm('Hapus "' + st.items[idx].name + '" dari transaksi ini?')) return;
+  st.items.splice(idx, 1);
+  renderCompletedTransactionEditorModal();
+}
+
+function renderCompletedTransactionEditorModal(){
+  const st = editingCompletedTrxState;
+  if(!st) return;
+
+  const isKasir = st.type === 'kasir';
+  const itemsHTML = st.items.map((item, idx) => {
+    const unitPrice = isKasir ? (Number(item.price) || 0) : (Number(item.cost) || 0);
+    const unitLabel = item.unit || item.baseUnit || 'PCS';
+    return `
+      <div class="trx-edit-item-row">
+        <div class="trx-edit-item-info">
+          <b>${esc(item.name)}</b>
+          <small>${item.qty} ${esc(unitLabel)} × ${money(unitPrice)} = <b>${money(item.qty * unitPrice)}</b></small>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px">
+          <div class="trx-edit-qty-box">
+            <button type="button" class="minus" onclick="changeCompletedTrxItemQty(${idx}, -1)">−</button>
+            <span>${item.qty}</span>
+            <button type="button" onclick="changeCompletedTrxItemQty(${idx}, 1)">+</button>
+          </div>
+          <button type="button" class="btn red" style="padding:6px 9px;font-size:12px" onclick="removeCompletedTrxItem(${idx})">🗑️</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  if(isKasir){
+    const sub = st.items.reduce((a, b) => a + (Number(b.price)||0) * (Number(b.qty)||0), 0);
+    const disc = Math.min(sub, Math.max(0, Number(st.discount)||0));
+    const tax = Math.round((sub - disc) * (Number(st.taxRate)||0) / 100);
+    const total = sub - disc + tax;
+    const paid = Math.max(total, Number(st.paid)||0);
+    const change = Math.max(0, paid - total);
+
+    $('detailContent').innerHTML = `
+      <div class="detail-header">
+        <h3>✏️ Edit Transaksi ${esc(st.id)}</h3>
+        <button type="button" class="btn gray" onclick="closeTransactionDetail()">✕</button>
+      </div>
+      <div class="profitbox" style="margin-bottom:12px">
+        <small>Kurangi jumlah barang langsung di bawah, atau klik <b>+ Tambah Stok Barang via Keranjang</b> untuk memilih produk tambahan lalu menggabungkannya.</small>
+      </div>
+      <div style="margin-bottom:10px">
+        <button type="button" class="btn orange" style="width:100%" onclick="startAddItemsToCompletedTransaction('kasir', '${esc(st.id)}')">🛒 + Tambah Stok Barang via Keranjang</button>
+      </div>
+      <div>${itemsHTML}</div>
+      <div style="margin-top:12px;border-top:1px dashed var(--border);padding-top:10px">
+        <div class="total"><span>Subtotal Baru</span><b>${money(sub)}</b></div>
+        ${disc > 0 ? `<div class="total"><span>Diskon</span><b>-${money(disc)}</b></div>` : ''}
+        ${tax > 0 ? `<div class="total"><span>Pajak</span><b>${money(tax)}</b></div>` : ''}
+        <div class="total final"><span>Total Baru</span><b>${money(total)}</b></div>
+        <div class="total"><span>Pembayaran (${esc(st.method)})</span><b>${money(paid)}</b></div>
+        <div class="total"><span>Kembalian</span><b>${money(change)}</b></div>
+      </div>
+      <div class="row" style="margin-top:14px">
+        <button type="button" class="btn green" onclick="saveCompletedTransactionEdit('kasir', '${esc(st.id)}')">✓ Simpan Perubahan</button>
+        <button type="button" class="btn gray" onclick="showTransactionDetail('${esc(st.id)}')">Batal</button>
+      </div>
+    `;
+  } else {
+    const total = st.items.reduce((a, b) => a + (Number(b.cost)||0) * (Number(b.qty)||0), 0);
+    $('detailContent').innerHTML = `
+      <div class="detail-header">
+        <h3>✏️ Edit Belanja Agen ${esc(st.id)}</h3>
+        <button type="button" class="btn gray" onclick="closeTransactionDetail()">✕</button>
+      </div>
+      <div class="profitbox" style="margin-bottom:12px">
+        <small>Kurangi jumlah stok belanja langsung di bawah, atau klik <b>+ Tambah Stok Barang via Keranjang</b> untuk memilih produk tambahan lalu menggabungkannya.</small>
+      </div>
+      <div style="margin-bottom:10px">
+        <button type="button" class="btn orange" style="width:100%" onclick="startAddItemsToCompletedTransaction('belanja', '${esc(st.id)}')">🛍️ + Tambah Stok Barang via Keranjang</button>
+      </div>
+      <div>${itemsHTML}</div>
+      <div style="margin-top:12px;border-top:1px dashed var(--border);padding-top:10px">
+        <div class="total final"><span>Total Belanja Baru</span><b>${money(total)}</b></div>
+      </div>
+      <div class="row" style="margin-top:14px">
+        <button type="button" class="btn green" onclick="saveCompletedTransactionEdit('belanja', '${esc(st.id)}')">✓ Simpan Perubahan</button>
+        <button type="button" class="btn gray" onclick="showPurchaseDetail('${esc(st.id)}')">Batal</button>
+      </div>
+    `;
+  }
+}
+
+function saveCompletedTransactionEdit(type, id){
+  const st = editingCompletedTrxState;
+  if(!st || st.id !== id || st.type !== type) return;
+  if(!st.items.length) return alert('Minimal harus ada 1 barang di dalam transaksi.');
+
+  if(type === 'kasir'){
+    const t = transactions.find(x => x.id === id);
+    if(!t) return alert('Transaksi tidak ditemukan');
+
+    const oldMap = new Map();
+    (t.items || []).forEach(it => {
+      const baseQty = (Number(it.qty)||0) * (Number(it.factor)||1);
+      oldMap.set(it.id, (oldMap.get(it.id)||0) + baseQty);
+    });
+    const newMap = new Map();
+    st.items.forEach(it => {
+      const baseQty = (Number(it.qty)||0) * (Number(it.factor)||1);
+      newMap.set(it.id, (newMap.get(it.id)||0) + baseQty);
+    });
+
+    const allIds = new Set([...oldMap.keys(), ...newMap.keys()]);
+    for(const pid of allIds){
+      const prod = products.find(p => p.id === pid);
+      if(prod){
+        const diff = (newMap.get(pid)||0) - (oldMap.get(pid)||0);
+        if(Number(prod.stock||0) - diff < 0){
+          return alert('Stok tidak mencukupi untuk produk: ' + prod.name);
+        }
+      }
+    }
+
+    allIds.forEach(pid => {
+      const prod = products.find(p => p.id === pid);
+      if(prod){
+        const diff = (newMap.get(pid)||0) - (oldMap.get(pid)||0);
+        prod.stock = Math.max(0, Number(prod.stock||0) - diff);
+      }
+    });
+
+    const sub = st.items.reduce((a, b) => a + (Number(b.price)||0) * (Number(b.qty)||0), 0);
+    const disc = Math.min(sub, Math.max(0, Number(st.discount)||0));
+    const tax = Math.round((sub - disc) * (Number(st.taxRate)||0) / 100);
+    const total = sub - disc + tax;
+    const paid = Math.max(total, Number(t.paid)||0);
+    const grossProfit = st.items.reduce((a, b) => { const unitModal = (b.variantCost!==undefined&&Number(b.variantCost)>0)?Number(b.variantCost):((Number(b.cost)||0)*(Number(b.factor)||1)); return a + ((Number(b.price)||0) - unitModal) * (Number(b.qty)||0); }, 0);
+
+    t.items = st.items.map(x => ({...x}));
+    t.subtotal = sub;
+    t.discount = disc;
+    t.tax = tax;
+    t.total = total;
+    t.paid = paid;
+    t.change = Math.max(0, paid - total);
+    t.profit = grossProfit - disc;
+
+    editingCompletedTrxState = null;
+    save();
+    refresh();
+    alert('Perubahan transaksi & penyesuaian stok berhasil disimpan!');
+    showTransactionDetail(id);
+  } else {
+    const p = purchases.find(x => x.id === id);
+    if(!p) return alert('Riwayat belanja tidak ditemukan');
+
+    const oldMap = new Map();
+    (p.items || []).forEach(it => {
+      const baseQty = (Number(it.qty)||0) * (Number(it.factor)||1);
+      oldMap.set(it.id, (oldMap.get(it.id)||0) + baseQty);
+    });
+    const newMap = new Map();
+    st.items.forEach(it => {
+      const baseQty = (Number(it.qty)||0) * (Number(it.factor)||1);
+      newMap.set(it.id, (newMap.get(it.id)||0) + baseQty);
+    });
+
+    const allIds = new Set([...oldMap.keys(), ...newMap.keys()]);
+    allIds.forEach(pid => {
+      const prod = products.find(p => p.id === pid);
+      if(prod){
+        const diff = (newMap.get(pid)||0) - (oldMap.get(pid)||0);
+        prod.stock = Math.max(0, Number(prod.stock||0) + diff);
+      }
+    });
+
+    p.items = st.items.map(x => ({...x}));
+    p.total = p.items.reduce((a, b) => a + (Number(b.cost)||0) * (Number(b.qty)||0), 0);
+
+    editingCompletedTrxState = null;
+    save();
+    refresh();
+    alert('Perubahan belanja agen & penyesuaian stok berhasil disimpan!');
+    showPurchaseDetail(id);
+  }
+}
+
 function showTransactionDetail(id){
 let t=transactions.find(x=>x.id===id);if(!t)return alert('Transaksi tidak ditemukan');
-let items=(t.items||[]).map((p,i)=>`<tr><td>${i+1}. ${esc(p.name)}</td><td>${p.qty} ${esc(p.unit||p.baseUnit||'PCS')}</td><td>${money(p.price)}</td><td>${money(p.qty*p.price)}</td></tr>`).join('');
-$('detailContent').innerHTML=`<div class="detail-header"><h3>🧾 Detail Transaksi</h3><button class="btn gray" onclick="closeTransactionDetail()">✕</button></div>
-<div class="profitbox"><p><b>ID Transaksi:</b> ${esc(t.id)}</p><p><b>Tanggal:</b> ${new Date(t.date).toLocaleString('id-ID')}</p><p><b>Petugas / Kasir:</b> ${esc(t.cashier||'Owner')}</p></div>
-<h3>📦 Barang yang Dibeli</h3><div class="tablewrap"><table><thead><tr><th>Nama Barang</th><th>Qty</th><th>Harga</th><th>Subtotal</th></tr></thead><tbody>${items}</tbody></table></div>
-<div style="margin-top:15px"><div class="total"><span>Subtotal</span><b>${money(t.subtotal)}</b></div><div class="total"><span>Diskon</span><b>${money(t.discount)}</b></div><div class="total"><span>Pajak</span><b>${money(t.tax)}</b></div><div class="total final"><span>Total Pembayaran</span><b>${money(t.total)}</b></div><hr style="margin:12px 0"><div class="total"><span>Metode Pembayaran</span><b>${esc(t.method)}</b></div><div class="total"><span>Uang Diterima</span><b>${money(t.paid)}</b></div><div class="total"><span>Kembalian</span><b>${money(t.change)}</b></div></div>
-<div class="row"><button class="btn green" onclick="reprint('${esc(t.id)}')">🖨️ Cetak Struk</button><button class="btn gray" onclick="closeTransactionDetail()">Tutup</button></div>`;
+let itemCards=(t.items||[]).map((p,i)=>`
+  <div class="detail-item-card">
+    <div class="detail-item-main">
+      <div class="detail-item-title">${i+1}. ${esc(p.name)}</div>
+      <div class="detail-item-sub">${p.qty} ${esc(p.unit||p.baseUnit||'PCS')} × ${money(p.price)}</div>
+    </div>
+    <div class="detail-item-subtotal">${money(p.qty*p.price)}</div>
+  </div>
+`).join('') || '<div class="empty">Tidak ada barang</div>';
+$('detailContent').innerHTML=`
+<div class="detail-header">
+  <h3>🧾 Detail Transaksi</h3>
+  <button type="button" class="detail-close-btn" onclick="closeTransactionDetail()" aria-label="Tutup">✕</button>
+</div>
+<div class="detail-meta-card">
+  <div class="detail-meta-row"><span class="detail-meta-label">ID Transaksi</span><span class="detail-meta-val">${esc(t.id)}</span></div>
+  <div class="detail-meta-row"><span class="detail-meta-label">Tanggal</span><span class="detail-meta-val">${new Date(t.date).toLocaleString('id-ID')}</span></div>
+  <div class="detail-meta-row"><span class="detail-meta-label">Petugas / Kasir</span><span class="detail-meta-val">${esc(t.cashier||'Owner')}</span></div>
+</div>
+<div class="detail-section-label"><span>📦 Barang yang Dibeli</span><span>${(t.items||[]).reduce((a,b)=>a+(Number(b.qty)||0),0)} Item</span></div>
+<div class="detail-items-list">${itemCards}</div>
+<div class="detail-summary-box">
+  <div class="total"><span>Subtotal</span><b>${money(t.subtotal)}</b></div>
+  <div class="total"><span>Diskon</span><b>${money(t.discount)}</b></div>
+  <div class="total"><span>Pajak</span><b>${money(t.tax)}</b></div>
+  <div class="total final"><span>Total Pembayaran</span><b>${money(t.total)}</b></div>
+  <div class="total" style="margin-top:6px;padding-top:6px;border-top:1px solid #e2e8f0"><span>Metode Pembayaran</span><b>${esc(t.method)}</b></div>
+  <div class="total"><span>Uang Diterima</span><b>${money(t.paid)}</b></div>
+  <div class="total"><span>Kembalian</span><b>${money(t.change)}</b></div>
+</div>
+<div class="detail-action-grid">
+  <button type="button" class="btn orange detail-action-btn" onclick="openCompletedTransactionEditor('kasir', '${esc(t.id)}')">✏️ Edit Transaksi / Stok</button>
+  <button type="button" class="btn green detail-action-btn" onclick="reprint('${esc(t.id)}')">🖨️ Cetak Struk</button>
+  <button type="button" class="btn gray detail-action-btn" style="grid-column:span 2" onclick="closeTransactionDetail()">Tutup</button>
+</div>`;
 $('detailModal').style.display='block';pushModalHistory();
 }
 function closeTransactionDetail(){
+if($('detailContent'))$('detailContent').className='detail-content';
+activePurchaseEditState=null;
 if(modalHistoryOpen){history.back();return}
 $('detailModal').style.display='none';
 }
@@ -5952,7 +7152,7 @@ return `<div class="product-pick-row" data-product-id="${p.id}">
 <h4>${esc(p.name)}</h4>
 <p>${esc(p.category)} · Stok saat ini: ${p.stock} ${esc(p.baseUnit||'PCS')}</p>
 ${vs.length>1?`<select class="unit-select" onchange="selectPurchaseUnit(${p.id},this.value)">${vs.map((u,i)=>`<option value="${i}" ${i===idx?'selected':''}>${esc(u.name)} · ${u.factor} ${esc(p.baseUnit||'PCS')}</option>`).join('')}</select>`:`<p>Satuan: ${esc(v.name)}</p>`}
-<strong>${money(p.cost*(v.factor||1))} / ${esc(v.name)}</strong>
+<strong>${money(getVariantUnitCost(p,v,v.factor))} / ${esc(v.name)}</strong>
 <p>Harga modal pembelian per ${esc(v.name)}</p>
 </div>
 <div class="product-pick-actions">
@@ -6012,7 +7212,7 @@ function changePurchaseQty(id,amount,vIndex=0){
 let p=products.find(x=>x.id===id);if(!p)return;
 let vs=p.variants||[{name:p.baseUnit||'PCS',factor:1,price:p.price}],v=vs[vIndex];if(!v)return;
 let item=purchaseCart.find(x=>x.id===id&&x.vIndex===vIndex);
-if(!item&&amount>0)purchaseCart.push({id:p.id,name:p.name,qty:1,cost:Number(p.cost||0)*(Number(v.factor)||1),unit:v.name,factor:Number(v.factor)||1,vIndex});
+if(!item&&amount>0)purchaseCart.push({id:p.id,name:p.name,qty:1,cost:getVariantUnitCost(p,v,v.factor),unit:v.name,factor:Number(v.factor)||1,vIndex});
 else if(item){item.qty+=amount;if(item.qty<=0)purchaseCart=purchaseCart.filter(x=>!(x.id===id&&x.vIndex===vIndex))}
 renderPurchaseUI();
 }
@@ -6022,6 +7222,7 @@ if(!purchaseCart.length)return;
 if(confirm('Kosongkan keranjang belanja?')){purchaseCart=[];renderPurchaseUI()}
 }
 function finishPurchase(){
+if(stagingEditTarget && stagingEditTarget.type === 'belanja'){ mergeStagedCartToEditedTransaction('belanja'); return; }
 if(!purchaseCart.length)return alert('Daftar belanja masih kosong');
 let supplier=$('supplierName').value.trim()||'Tidak disebutkan';
 let t={id:'BLJ'+Date.now(),date:new Date().toISOString(),supplier,items:purchaseCart.map(x=>({...x})),total:purchaseCart.reduce((a,x)=>a+x.qty*x.cost,0)};
@@ -6037,7 +7238,20 @@ let t=pendingPurchase;if(!t)return;
 $('purchaseConfirmModal').classList.remove('show');pendingPurchase=null;
 t.items.forEach(x=>{
 let p=products.find(y=>y.id===x.id);
-if(p){p.stock+=x.qty*(x.factor||1);p.cost=x.cost/(x.factor||1)}
+if(p){
+  const f=Math.max(1,Number(x.factor)||1);
+  const purchaseUnitCost=Number(x.cost)||0;
+  const newBaseCost=purchaseUnitCost/f;
+  p.stock+=x.qty*f;
+  p.cost=newBaseCost;
+  if(Array.isArray(p.variants)){
+    p.variants=p.variants.map(v=>{
+      const vf=Math.max(1,Number(v.factor)||1);
+      const isBoughtVariant=(vf===f&&String(v.name||'').toUpperCase()===String(x.unit||'').toUpperCase());
+      return {...v,cost:isBoughtVariant?purchaseUnitCost:(newBaseCost*vf)};
+    });
+  }
+}
 });
 purchases.unshift(t);purchaseCart=[];$('supplierName').value='';
 save();refresh();renderPurchaseUI();
@@ -6045,14 +7259,36 @@ alert('Belanja tersimpan. Stok dan harga modal sudah diperbarui.');
 }
 function showPurchaseDetail(id){
 let t=purchases.find(x=>x.id===id);if(!t)return alert('Riwayat belanja tidak ditemukan');
-let rows=(t.items||[]).map((x,i)=>`<tr><td>${i+1}. ${esc(x.name)} (${esc(x.unit||'PCS')})</td><td>${x.qty}</td><td>${money(x.cost)}</td><td>${money(x.qty*x.cost)}</td></tr>`).join('');
+let itemCards=(t.items||[]).map((x,i)=>`
+  <div class="detail-item-card">
+    <div class="detail-item-main">
+      <div class="detail-item-title">${i+1}. ${esc(x.name)}</div>
+      <div class="detail-item-sub">${x.qty} ${esc(x.unit||'PCS')} × ${money(x.cost)}</div>
+    </div>
+    <div class="detail-item-subtotal">${money(x.qty*x.cost)}</div>
+  </div>
+`).join('') || '<div class="empty">Tidak ada rincian barang</div>';
 $('detailContent').innerHTML=`
-<div class="detail-header"><h3>🧾 Detail Belanja Agen</h3><button class="btn gray" onclick="closeTransactionDetail()">✕</button></div>
-<div class="profitbox"><p><b>ID Belanja:</b> ${esc(t.id)}</p><p><b>Tanggal:</b> ${new Date(t.date).toLocaleString('id-ID')}</p><p><b>Agen:</b> ${esc(t.supplier)}</p></div>
-<h3>📦 Rincian Barang</h3>
-<div class="tablewrap"><table><thead><tr><th>Produk</th><th>Qty</th><th>Harga Modal</th><th>Subtotal</th></tr></thead><tbody>${rows}</tbody></table></div>
-<div style="margin-top:15px"><div class="total final"><span>Total Belanja</span><b>${money(t.total)}</b></div></div>
-<div class="row"><button class="btn" style="background:#15803d" onclick="sendPurchaseWhatsApp('${esc(t.id)}')">📲 Kirim ke WhatsApp</button><button class="btn green" onclick="showPurchasePriceEditor('${esc(t.id)}')">✏️ Ubah Harga</button><button class="btn gray" onclick="closeTransactionDetail()">Tutup</button></div>`;
+<div class="detail-header">
+  <h3>🧾 Detail Belanja Agen</h3>
+  <button type="button" class="detail-close-btn" onclick="closeTransactionDetail()" aria-label="Tutup">✕</button>
+</div>
+<div class="detail-meta-card">
+  <div class="detail-meta-row"><span class="detail-meta-label">ID Belanja</span><span class="detail-meta-val">${esc(t.id)}</span></div>
+  <div class="detail-meta-row"><span class="detail-meta-label">Tanggal</span><span class="detail-meta-val">${new Date(t.date).toLocaleString('id-ID')}</span></div>
+  <div class="detail-meta-row"><span class="detail-meta-label">Agen / Supplier</span><span class="detail-meta-val">${esc(t.supplier||'Tidak disebutkan')}</span></div>
+</div>
+<div class="detail-section-label"><span>📦 Rincian Barang</span><span>${(t.items||[]).reduce((a,b)=>a+(Number(b.qty)||0),0)} Item</span></div>
+<div class="detail-items-list">${itemCards}</div>
+<div class="detail-summary-box">
+  <div class="total final"><span>Total Belanja</span><b>${money(t.total)}</b></div>
+</div>
+<div class="detail-action-grid">
+  <button type="button" class="btn orange detail-action-btn" onclick="openCompletedTransactionEditor('belanja', '${esc(t.id)}')">✏️ Edit Transaksi / Stok</button>
+  <button type="button" class="btn detail-action-btn" style="background:#16a34a" onclick="sendPurchaseWhatsApp('${esc(t.id)}')">📲 Kirim WhatsApp</button>
+  <button type="button" class="btn green detail-action-btn" onclick="showPurchasePriceEditor('${esc(t.id)}')">💲 Ubah Harga</button>
+  <button type="button" class="btn gray detail-action-btn" onclick="closeTransactionDetail()">Tutup</button>
+</div>`;
 $('detailModal').style.display='block';pushModalHistory();
 }
 function sendPurchaseWhatsApp(id){
@@ -6060,51 +7296,204 @@ let t=purchases.find(x=>x.id===id);if(!t)return alert('Riwayat belanja tidak dit
 let text=(t.items||[]).map(x=>`${x.qty} ${x.unit||'PCS'} ${x.name}`).join('\n\n');
 window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank');
 }
-function showPurchasePriceEditor(id){
-let t=purchases.find(x=>x.id===id);if(!t)return alert('Riwayat belanja tidak ditemukan');
-let cards=(t.items||[]).map((x,i)=>`
-<div class="history-card">
-  <div class="history-card-top">
-    <div>
-      <div class="history-card-id">${esc(x.name)}</div>
-      <div class="history-card-date">Qty: ${x.qty} ${esc(x.unit||'PCS')}</div>
-    </div>
-    <div class="history-card-total">${money(x.qty*x.cost)}</div>
-  </div>
-  <div style="margin-top:4px">
-    <label style="font-size:11.5px;color:var(--muted);margin-bottom:3px">Harga Modal / Unit (${esc(x.unit||'PCS')})</label>
-    <input id="purchaseEdit${i}" class="money-input" type="text" inputmode="decimal" value="${formatThousands(Number(x.cost)||0)}">
-  </div>
-</div>`).join('');
+let activePurchaseEditState = null;
 
-$('detailContent').innerHTML=`
-<div class="detail-header"><h3>✏️ Ubah Harga Modal</h3><button class="btn gray" onclick="closeTransactionDetail()">✕</button></div>
-<div class="profitbox"><p><b>ID Belanja:</b> ${esc(t.id)}</p><p><b>Tanggal:</b> ${new Date(t.date).toLocaleString('id-ID')}</p><p><b>Agen:</b> ${esc(t.supplier)}</p></div>
-<p class="muted" style="margin-bottom:12px">Masukkan harga modal pembelian per satuan yang tercatat. Harga modal dasar produk akan disesuaikan berdasarkan faktor satuannya.</p>
-<div class="history-card-list" style="margin-bottom:12px">${cards}</div>
-<div class="total final" style="margin-bottom:14px"><span>Total Belanja Saat Ini</span><b>${money(t.total)}</b></div>
-<button class="btn green" style="width:100%;margin-bottom:8px" onclick="savePurchasePrices('${esc(t.id)}')">✓ SIMPAN PERUBAHAN HARGA</button>
-<button class="btn gray" style="width:100%" onclick="showPurchaseDetail('${esc(t.id)}')">Kembali ke Detail</button>`;
-$('detailModal').style.display='block';pushModalHistory();
+function formatUhmDate(dateStr){
+  const d = new Date(dateStr || Date.now());
+  const dd = String(d.getDate()).padStart(2, '0');
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const yyyy = d.getFullYear();
+  const hh = String(d.getHours()).padStart(2, '0');
+  const min = String(d.getMinutes()).padStart(2, '0');
+  const ss = String(d.getSeconds()).padStart(2, '0');
+  return `${dd}/${mm}/${yyyy}, ${hh}.${min}.${ss}`;
 }
+
+function showPurchasePriceEditor(id){
+  let t = purchases.find(x => x.id === id);
+  if(!t) return alert('Riwayat belanja tidak ditemukan');
+
+  activePurchaseEditState = {
+    purchaseId: t.id,
+    date: t.date,
+    supplier: t.supplier || 'Tidak disebutkan',
+    items: (t.items || []).map(item => {
+      const prod = products.find(p => p.id === item.id);
+      const baseUnit = String(prod?.baseUnit || 'PCS').toUpperCase();
+      const unitName = String(item.unit || baseUnit).toUpperCase();
+      const factor = Math.max(1, Number(item.factor) || 1);
+      const qty = Math.max(1, Number(item.qty) || 1);
+      const rawUnitCost = Number(item.cost) || ((Number(prod?.cost) || 0) * factor);
+
+      return {
+        id: item.id,
+        name: item.name,
+        qty: qty,
+        unit: unitName,
+        factor: factor,
+        unitCost: rawUnitCost,
+        vIndex: item.vIndex || 0
+      };
+    })
+  };
+
+  renderPurchasePriceEditorModal();
+  $('detailModal').style.display = 'block';
+  pushModalHistory();
+}
+
+function renderPurchasePriceEditorModal(){
+  const st = activePurchaseEditState;
+  if(!st) return;
+
+  const itemsHTML = st.items.map((item, idx) => {
+    const qty = Math.max(1, Number(item.qty) || 1);
+    const unitCost = Number(item.unitCost) || 0;
+    const subtotal = qty * unitCost;
+
+    return `
+      <div class="uhm-item-card">
+        <div class="uhm-item-top">
+          <div>
+            <div class="uhm-item-name">${esc(item.name)}</div>
+            <div class="uhm-item-qty">Qty: ${qty} ${esc(item.unit)}</div>
+          </div>
+          <div class="uhm-item-subtotal" id="uhmItemSub_${idx}">${money(subtotal)}</div>
+        </div>
+        <label class="uhm-input-label" for="uhmInput_${idx}">Harga Modal / Unit (${esc(item.unit)})</label>
+        <input id="uhmInput_${idx}" type="text" inputmode="decimal" class="uhm-price-input money-input"
+          value="${formatThousands(unitCost)}"
+          placeholder="0"
+          oninput="changePurchaseEditUnitCost(${idx}, this.value)">
+      </div>
+    `;
+  }).join('') || '<div class="empty">Tidak ada item di nota ini.</div>';
+
+  const totalBelanja = st.items.reduce((sum, it) => sum + ((Number(it.qty) || 1) * (Number(it.unitCost) || 0)), 0);
+
+  $('detailContent').outerHTML = `
+    <div id="detailContent" class="uhm-modal-card">
+      <div class="uhm-header">
+        <h3 class="uhm-title">✏️ Ubah Harga Modal</h3>
+        <button type="button" class="uhm-close-btn" onclick="closePurchasePriceEditorModal()" aria-label="Tutup">✕</button>
+      </div>
+
+      <div class="uhm-meta-box">
+        <div><b>ID Belanja:</b> ${esc(st.purchaseId)}</div>
+        <div><b>Tanggal:</b> ${esc(formatUhmDate(st.date))}</div>
+        <div><b>Agen:</b> ${esc(st.supplier || 'Tidak disebutkan')}</div>
+      </div>
+
+      <p class="uhm-desc">Masukkan harga modal pembelian per satuan yang tercatat. Harga modal dasar produk akan disesuaikan berdasarkan faktor satuannya.</p>
+
+      <div class="uhm-items-wrap">${itemsHTML}</div>
+
+      <div class="uhm-total-bar">
+        <span>Total Belanja Saat Ini</span>
+        <strong id="uhmTotalBelanja">${money(totalBelanja)}</strong>
+      </div>
+
+      <div class="uhm-actions">
+        <button type="button" class="uhm-btn-save" onclick="savePurchasePrices('${esc(st.purchaseId)}')">✓ SIMPAN PERUBAHAN HARGA</button>
+        <button type="button" class="uhm-btn-back" onclick="backToPurchaseDetail('${esc(st.purchaseId)}')">Kembali ke Detail</button>
+      </div>
+    </div>
+  `;
+}
+
+function changePurchaseEditUnitCost(idx, val){
+  const st = activePurchaseEditState;
+  if(!st || !st.items[idx]) return;
+  const item = st.items[idx];
+  const newUnitCost = parseMoney(val);
+  item.unitCost = newUnitCost;
+
+  const qty = Math.max(1, Number(item.qty) || 1);
+  const subEl = $('uhmItemSub_' + idx);
+  if(subEl) subEl.textContent = money(qty * newUnitCost);
+
+  const totalBelanja = st.items.reduce((sum, it) => sum + ((Number(it.qty) || 1) * (Number(it.unitCost) || 0)), 0);
+  const totalEl = $('uhmTotalBelanja');
+  if(totalEl) totalEl.textContent = money(totalBelanja);
+}
+
+function closePurchasePriceEditorModal(){
+  const card = $('detailContent');
+  if(card) card.className = 'detail-content';
+  activePurchaseEditState = null;
+  closeTransactionDetail();
+}
+
+function backToPurchaseDetail(id){
+  const card = $('detailContent');
+  if(card) card.className = 'detail-content';
+  activePurchaseEditState = null;
+  showPurchaseDetail(id);
+}
+
 function savePurchasePrices(id){
-let t=purchases.find(x=>x.id===id);if(!t)return;
-let newPrices=[];
-for(let i=0;i<t.items.length;i++){
-let input=$('purchaseEdit'+i);if(!input)return alert('Kolom harga tidak ditemukan');
-let n=parseMoney(input.value);
-if(!Number.isFinite(n)||n<0)return alert('Harga modal harus angka 0 atau lebih');
-newPrices.push(n);
+  const st = activePurchaseEditState;
+  let t = purchases.find(x => x.id === id);
+  if(!t || !st) return;
+
+  for(let i = 0; i < st.items.length; i++){
+    const it = st.items[i];
+    if(!Number.isFinite(it.unitCost) || it.unitCost < 0){
+      return alert('Harga modal untuk "' + it.name + '" tidak valid.');
+    }
+  }
+
+  t.items = st.items.map(it => {
+    const qty = Math.max(1, Number(it.qty) || 1);
+    const factor = Math.max(1, Number(it.factor) || 1);
+    const unitCost = Number(it.unitCost) || 0;
+    const baseUnitCost = unitCost / factor;
+    const prod = products.find(p => p.id === it.id);
+
+    if(prod){
+      prod.cost = baseUnitCost;
+      if(Array.isArray(prod.variants)){
+        prod.variants = prod.variants.map(v => {
+          const vf = Number(v.factor) || 1;
+          const isMatchedUnit = vf === factor && String(v.name || '').toUpperCase() === String(it.unit || '').toUpperCase();
+          return {
+            ...v,
+            cost: isMatchedUnit ? unitCost : (baseUnitCost * vf)
+          };
+        });
+      }
+      cart = cart.map(cItem => {
+        if(cItem.id !== prod.id) return cItem;
+        const cf = Math.max(1, Number(cItem.factor) || 1);
+        const matchedVar = (prod.variants || []).find(v => Number(v.factor) === cf && String(v.name||'').toUpperCase() === String(cItem.unit||'').toUpperCase());
+        return { ...cItem, cost: baseUnitCost, variantCost: getVariantUnitCost(prod, matchedVar, cf) };
+      });
+    }
+
+    return {
+      id: it.id,
+      name: it.name,
+      qty: qty,
+      cost: unitCost,
+      unit: it.unit,
+      factor: factor,
+      vIndex: it.vIndex
+    };
+  });
+
+  t.total = t.items.reduce((sum, x) => sum + ((Number(x.qty) || 1) * (Number(x.cost) || 0)), 0);
+
+  const card = $('detailContent');
+  if(card) card.className = 'detail-content';
+  activePurchaseEditState = null;
+
+  save();
+  refresh();
+  updateCart();
+  alert('Perubahan harga modal berhasil disimpan!');
+  showPurchaseDetail(id);
 }
-t.items.forEach((item,i)=>{
-item.cost=newPrices[i];
-let p=products.find(y=>y.id===item.id);
-if(p){let factor=Number(item.factor)||1;p.cost=newPrices[i]/factor}
-});
-t.total=t.items.reduce((a,x)=>a+x.qty*x.cost,0);
-save();refresh();alert('Harga modal dan total belanja berhasil diperbarui!');
-showPurchaseDetail(id);
-}
+
 function addStock(){
 if(!canEditStockManual())return alert('Akses tambah stok dibatasi oleh Owner.');
 let p=products.find(x=>x.id===Number($('stockProduct').value)),qty=Number($('stockQty').value);
